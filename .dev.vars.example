@@ -1,0 +1,6 @@
+# Copy this file to .dev.vars for local Wrangler development.
+ADMIN_DASHBOARD_KEY=replace-with-your-local-dashboard-key
+ADMIN_ENCRYPTION_KEY=replace-with-a-long-random-encryption-key
+BOT_TOKEN=replace-with-your-telegram-bot-token
+MIDTRANS_SERVER_KEY=replace-with-your-midtrans-server-key
+ADMIN_CHAT_ID=replace-with-your-admin-chat-id

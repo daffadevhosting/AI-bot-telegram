@@ -1,0 +1,43 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "chat-bot-telegram",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-10-08",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  },
+
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/", "/api/*", "/webhook/*"]
+  },
+
+  "ai": {
+    "binding": "AI"
+  },
+
+  "vars": {
+    "PRODUCTS_URL": "https://as-syariahbordir.github.io/product.json",
+    "MIDTRANS_IS_PRODUCTION": "false"
+  },
+
+  "kv_namespaces": [
+    {
+      "binding": "ORDER_SESSION",
+      "id": "YUOR_KV_NAMESPACE_ID"
+    }
+  ],
+
+  "d1_databases": [
+  {
+    "binding": "DB",
+    "database_name": "bot_orders",
+    "database_id": "YUOR_D1_DATABASE_ID"
+  }
+],
+
+  // Upload source maps untuk debugging
+  "upload_source_maps": true
+}

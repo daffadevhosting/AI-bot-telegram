@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Store Console</title>
+  <style>
+    :root { --ink:#17202a; --muted:#68747f; --paper:#f3f5f4; --panel:#fff; --line:#d9dfdc; --accent:#176b5b; --danger:#ad3b35; }
+    * { box-sizing:border-box; } body { margin:0; background:var(--paper); color:var(--ink); font:14px/1.5 ui-sans-serif,system-ui,sans-serif; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:22px clamp(20px,5vw,64px); border-bottom:1px solid var(--line); background:var(--panel); } header h1 { margin:0; font-size:20px; } header p { margin:3px 0 0; color:var(--muted); }
+    main { width:min(1180px,100%); margin:0 auto; padding:28px clamp(20px,5vw,64px) 64px; } .gate { max-width:460px; margin:70px auto; padding:28px; border:1px solid var(--line); background:var(--panel); } .gate h2 { margin:0 0 8px; }
+    .layout { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr); gap:20px; } .panel { padding:24px; border:1px solid var(--line); background:var(--panel); } .panel + .panel { margin-top:20px; }
+    h2 { margin:0 0 20px; font-size:18px; } h3 { margin:0; font-size:15px; } label { display:block; margin:0 0 14px; color:var(--muted); font-size:12px; font-weight:650; }
+    input, textarea { display:block; width:100%; margin-top:6px; padding:10px 11px; border:1px solid var(--line); border-radius:2px; background:#fff; color:var(--ink); font:inherit; } textarea { min-height:82px; resize:vertical; }
+    button { padding:10px 14px; border:1px solid var(--accent); border-radius:2px; background:var(--accent); color:#fff; font:650 13px inherit; cursor:pointer; } button.secondary { border-color:var(--line); background:#fff; color:var(--ink); } button.danger { border-color:var(--danger); background:#fff; color:var(--danger); } button:disabled { opacity:.55; cursor:wait; }
+    .actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; } .toolbar { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:16px; } .product { padding:16px 0; border-top:1px solid var(--line); } .product:first-child { border-top:0; padding-top:0; }
+    .product-head { display:flex; justify-content:space-between; gap:12px; } .product-head strong { font-size:15px; } .meta { margin:3px 0 12px; color:var(--muted); } .variant { display:grid; grid-template-columns:1fr 1fr minmax(150px,1.5fr) 90px 34px; gap:8px; margin-top:8px; } .variant input { margin:0; padding:8px; } .variant button { padding:4px; border-color:var(--line); background:#fff; color:var(--danger); }
+    .status { min-height:20px; margin-top:12px; color:var(--muted); } .status.error { color:var(--danger); } .hidden { display:none !important; }
+    @media (max-width:800px) { .layout { grid-template-columns:1fr; } header { align-items:flex-start; flex-direction:column; } }
+  </style>
+</head>
+<body>
+  <header><div><h1>Store Console</h1><p>Kelola identitas toko, katalog, dan pembayaran.</p></div><button id="logout" class="secondary hidden">Keluar</button></header>
+  <main>
+    <section id="gate" class="gate"><h2>Masuk ke console</h2><p>Gunakan dashboard key yang tersimpan sebagai secret Worker.</p><label>Dashboard key<input id="dashboard-key" type="password" autocomplete="current-password" /></label><button id="login">Masuk</button><div id="gate-status" class="status"></div></section>
+    <section id="app" class="hidden"><div class="layout"><div>
+      <section class="panel"><h2>Profil toko</h2><form id="settings-form"><label>Nama toko<input name="storeName" required /></label><label>Alamat toko<textarea name="storeAddress"></textarea></label><label>Lokasi toko<input name="storeLocation" placeholder="URL Google Maps atau koordinat" /></label><label>Nomor CS<input name="customerService" placeholder="08xxxxxxxxxx" /></label><div class="toolbar"><h3>Jam operasional</h3></div><label>Jam buka<input name="openingTime" type="time" /></label><label>Jam tutup<input name="closingTime" type="time" /></label><h3>Midtrans</h3><label>Client Key<input name="midtransClientKey" /></label><label>Server Key<input name="midtransServerKey" type="password" placeholder="Kosongkan jika tidak ingin mengganti" /></label><div class="actions"><button>Simpan pengaturan</button></div><div id="settings-status" class="status"></div></form></section>
+      <section class="panel"><div class="toolbar"><h2>Produk</h2><button id="new-product">Tambah produk</button></div><div id="products"></div><div id="products-status" class="status"></div></section>
+    </div><section id="product-editor" class="panel hidden"><h2 id="editor-title">Produk baru</h2><form id="product-form"><label>Nama produk<input name="title" required /></label><label>SKU<input name="sku" required /></label><label>Kategori<input name="category" /></label><label>Harga<input name="price" type="number" min="0" required /></label><label>Harga diskon<input name="discount" type="number" min="0" /></label><label>URL gambar<input name="image" type="url" /></label><label>Deskripsi<textarea name="description"></textarea></label><div class="toolbar"><h3>Varian, ukuran / tipe, dan stok</h3><button type="button" id="add-variant" class="secondary">Tambah varian</button></div><div id="variants"></div><div class="actions"><button>Simpan produk</button><button type="button" id="cancel-product" class="secondary">Batal</button></div><div id="editor-status" class="status"></div></form></section></div></section>
+  </main><script src="admin.js"></script>
+</body>
+</html>
