@@ -1,4 +1,4 @@
-# 🤖 As-Syariah Bordir — Conversational Commerce
+# 🤖 AI-bot-telegram — Conversational Commerce
 
 Toko online percakapan untuk **As-Syariah Bordir**. Aplikasi ini menyediakan chat AI web dan bot Telegram dengan katalog, keranjang multi-item, checkout terpandu, serta pembayaran Midtrans Snap.
 
