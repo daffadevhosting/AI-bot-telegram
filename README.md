@@ -278,7 +278,7 @@ Field `price` dan `discount` dapat berupa angka atau string harga. Worker member
 
 ## 📄 Lisensi
 
-Belum ada lisensi open-source yang ditentukan. Tambahkan file `LICENSE` jika project akan didistribusikan secara publik.
+[MIT LICENSE](LICENSE)
 
 ## 🤝 Kontribusi
 
